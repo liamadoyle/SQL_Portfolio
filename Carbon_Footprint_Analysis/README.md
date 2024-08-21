@@ -32,23 +32,18 @@ The analysis is based on the following dataset:
 
 ## Key SQL Queries
 
-### Examine Carbon Footprints Across Industries
-This query calculates the average carbon footprint by industry group.
+### Calculate Total Industry Footprint for 2017
 
 ```sql
-SELECT
-    industry_group,
-    AVG(carbon_footprint_pcf) AS avg_carbon_footprint
-FROM
-    product_emissions
-GROUP BY
-    industry_group
-ORDER BY
-    avg_carbon_footprint DESC;
+-- Update your query here
+SELECT industry_group, COUNT(DISTINCT company) AS num_companies, ROUND(SUM(carbon_footprint_pcf), 1) AS total_industry_footprint
+FROM product_emissions
+WHERE year = '2017'
+GROUP BY industry_group
+ORDER BY total_industry_footprint DESC;
 ```
 
 ### Identify Key Contributors
-This query identifies the top contributing industries and companies by total carbon footprint.
 
 ```sql
 SELECT
@@ -65,7 +60,6 @@ LIMIT 10;
 ```
 
 ### Analyze Emissions by Production Stage
-This query breaks down emissions by the stage of production (upstream, operations, downstream).
 
 ```sql
 SELECT
@@ -107,4 +101,3 @@ For any questions or feedback, please reach out to me via [email](mailto:ld19rk@
 ---
 
 Thank you for exploring my SQL project!
-
