@@ -32,8 +32,34 @@ The analysis is based on the following dataset:
 
 ## Key SQL Queries
 
+### Examining User Information
+
+```sql
+SELECT garage_id, COUNT(DISTINCT user_id) AS num_unique_users
+FROM charging_sessions
+WHERE user_type = 'Shared'
+GROUP BY garage_id
+ORDER BY num_unique_users DESC;
+```
+
+```sql
+SELECT weekdays_plugin, start_plugin_hour, COUNT(user_id) AS num_charging_sessions
+FROM charging_sessions
+WHERE user_type = 'Shared'
+GROUP BY weekdays_plugin, start_plugin_hour
+ORDER BY num_charging_sessions DESC
+LIMIT 10;
+```
+
+```sql
+SELECT user_id, AVG(duration_hours) AS avg_charging_duration
+FROM charging_sessions
+WHERE user_type = 'Shared'
+GROUP BY user_id
+HAVING AVG(duration_hours) > 10
+ORDER BY avg_charging_duration DESC;
+```
 ### Analyze Charging Duration and Usage Patterns
-This query calculates the average session duration and electricity consumption by user type.
 
 ```sql
 SELECT
@@ -47,7 +73,6 @@ GROUP BY
 ```
 
 ### Compare Shared vs. Private Usage
-This query compares usage patterns between shared and private charging stations.
 
 ```sql
 SELECT
@@ -61,7 +86,6 @@ GROUP BY
 ```
 
 ### Identify Peak Demand Periods
-This query identifies peak usage times based on start times and days of the week.
 
 ```sql
 SELECT
@@ -105,4 +129,3 @@ For any questions or feedback, please reach out to me via [email](mailto:ld19rk@
 ---
 
 Thank you for exploring my SQL project!
-
