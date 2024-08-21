@@ -1,1 +1,50 @@
+# Wholesale Revenue Analysis for Motorcycle Parts Company
 
+## Project Overview
+
+This project involves analyzing sales data for a company that sells motorcycle parts through three warehouses. The objective is to calculate the net revenue by product line, grouped by month and warehouse, focusing solely on wholesale orders. The analysis provides valuable insights into revenue trends across different warehouses and product lines over time, helping the company's board of directors make informed decisions.
+
+## Data Description
+
+The analysis is based on the following dataset:
+
+**Table: `sales`**
+
+| Column         | Data Type | Description                                           |
+|----------------|-----------|-------------------------------------------------------|
+| `order_number` | VARCHAR   | Unique order number.                                  |
+| `date`         | DATE      | Date of the order, from June to August 2021.          |
+| `warehouse`    | VARCHAR   | The warehouse that the order was made from—North, Central, or West. |
+| `client_type`  | VARCHAR   | Whether the order was Retail or Wholesale.            |
+| `product_line` | VARCHAR   | Type of product ordered.                              |
+| `quantity`     | INT       | Number of products ordered.                           |
+| `unit_price`   | FLOAT     | Price per product (in dollars).                       |
+| `total`        | FLOAT     | Total price of the order (in dollars).                |
+| `payment`      | VARCHAR   | Payment method—Credit card, Transfer, or Cash.        |
+| `payment_fee`  | FLOAT     | Percentage of total charged due to the payment method.|
+
+## Objectives
+
+1. **Calculate Net Revenue:** Determine the net revenue for each product line by subtracting payment fees from the total order value.
+2. **Group Data by Month and Warehouse:** Aggregate the net revenue by product line, grouped by month and warehouse, to identify trends over time.
+3. **Focus on Wholesale Orders:** Filter the data to include only wholesale orders, as this analysis is focused on the wholesale segment of the business.
+
+## Key SQL Queries
+
+### Calculate Net Revenue by Product Line
+This query calculates the net revenue for each product line by subtracting payment fees from the total order value.
+
+```sql
+SELECT
+    product_line,
+    EXTRACT(MONTH FROM date) AS month,
+    warehouse,
+    SUM(total - (total * payment_fee / 100)) AS net_revenue
+FROM
+    sales
+WHERE
+    client_type = 'Wholesale'
+GROUP BY
+    product_line, month, warehouse
+ORDER BY
+    product_line, month, warehouse;
