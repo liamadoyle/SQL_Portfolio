@@ -49,11 +49,11 @@ LIMIT 1;
 This query finds the country with the lowest repayments.
 
 ```sql
-SELECT country_name, SUM(debt) AS total_repayment
+SELECT country_name, indicator_name, MIN(debt) AS lowest_repayment
 FROM international_debt
-WHERE indicator_name LIKE '%repayment%'
-GROUP BY country_name
-ORDER BY total_repayment ASC
+WHERE indicator_code = 'DT.AMT.DLXF.CD'
+GROUP BY country_name, indicator_name
+ORDER BY lowest_repayment ASC
 LIMIT 1;
 ```
 
