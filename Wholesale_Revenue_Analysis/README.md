@@ -32,7 +32,7 @@ The analysis is based on the following dataset:
 ## Key SQL Queries
 
 ### Calculate Net Revenue by Product Line
-This query calculates the net revenue for each product line by subtracting payment fees from the total order value.
+This query calculates the net revenue for each product line by subtracting payment fees from the total order value. The data is grouped by product line, month, and warehouse, focusing on wholesale orders only.
 
 ```sql
 SELECT
@@ -49,8 +49,6 @@ GROUP BY
 ORDER BY
     product_line, month, warehouse;
 ```
-## Group and Filter Data
-The data is grouped by product line, month, and warehouse, focusing on wholesale orders only.
 
 ## Results and Insights
 
