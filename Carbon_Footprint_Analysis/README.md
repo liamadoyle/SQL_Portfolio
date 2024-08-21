@@ -35,7 +35,6 @@ The analysis is based on the following dataset:
 ### Calculate Total Industry Footprint for 2017
 
 ```sql
--- Update your query here
 SELECT industry_group, COUNT(DISTINCT company) AS num_companies, ROUND(SUM(carbon_footprint_pcf), 1) AS total_industry_footprint
 FROM product_emissions
 WHERE year = '2017'
