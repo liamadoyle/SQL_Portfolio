@@ -35,19 +35,19 @@ The analysis is based on the following dataset:
 This query calculates the net revenue for each product line by subtracting payment fees from the total order value. The data is grouped by product line, month, and warehouse, focusing on wholesale orders only.
 
 ```sql
-SELECT
-    product_line,
-    EXTRACT(MONTH FROM date) AS month,
-    warehouse,
-    SUM(total - (total * payment_fee / 100)) AS net_revenue
-FROM
-    sales
-WHERE
-    client_type = 'Wholesale'
-GROUP BY
-    product_line, month, warehouse
-ORDER BY
-    product_line, month, warehouse;
+SELECT product_line, 
+	CASE
+		WHEN EXTRACT(MONTH FROM date) = 6 THEN 'June'
+		WHEN EXTRACT(MONTH FROM date) = 7 THEN 'July'
+		WHEN EXTRACT(MONTH FROM date) = 8 THEN 'August'
+		ELSE 'Other'
+	END AS month,
+	warehouse, 
+	SUM(total - payment_fee) AS net_revenue
+FROM sales
+WHERE client_type = 'Wholesale'
+GROUP BY product_line, month, warehouse
+ORDER BY product_line, month, net_revenue DESC
 ```
 
 ## Results and Insights
