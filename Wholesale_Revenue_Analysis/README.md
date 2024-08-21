@@ -48,3 +48,36 @@ GROUP BY
     product_line, month, warehouse
 ORDER BY
     product_line, month, warehouse;
+```
+## Group and Filter Data
+The data is grouped by product line, month, and warehouse, focusing on wholesale orders only.
+
+## Results and Insights
+
+- **Revenue Trends:** The analysis identified significant revenue trends across different product lines, months, and warehouses.
+- **Warehouse Performance:** Some warehouses consistently outperformed others, highlighting opportunities for resource allocation and strategy adjustment.
+- **Product Line Analysis:** Certain product lines generated higher revenue, suggesting potential focus areas for marketing and inventory management.
+
+## Conclusion
+
+The results of this analysis provide actionable insights into the performance of different warehouses and product lines, enabling the company's board of directors to make data-driven decisions. The focus on wholesale orders ensures that the analysis aligns with the company’s strategic goals.
+
+## Technologies Used
+
+- **SQL**: Used for data querying, filtering, grouping, and aggregation.
+- **Jupyter Notebook**: Used to write and run SQL queries in an interactive environment.
+
+## How to Run the Project
+
+1. Clone the repository to your local machine.
+2. Navigate to the `Wholesale_Revenue_Analysis` folder.
+3. Open the `.ipynb` file in Jupyter Notebook.
+4. Run the notebook cells to see the SQL queries and results.
+
+## Contact
+
+For any questions or feedback, please reach out to me via [email](mailto:ld19rk@brocku.ca) or connect with me on [LinkedIn](https://www.linkedin.com/in/liam-doyle-6b88a12a4).
+
+---
+
+Thank you for exploring my SQL project!
